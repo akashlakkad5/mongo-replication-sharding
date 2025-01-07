@@ -6,8 +6,8 @@ process.on('uncaughtException', (err) => {
 
 require('dotenv').config();
 
-
-const dbOps = require('./loaders/mongoose');
+global.Mongo = require('./utils/mgs');
+dbOps = require('./loaders/mongoose');
 
 Promise.all([dbOps.connect(),]).then(async () => {
     global.masterDB = await dbOps.switchDB({ dbName: process.env.MASTER_DB_NAME });
