@@ -37,7 +37,7 @@ exports.apiHandler = ({ payload, handler }) => (req, res, next) => {
         return this.sendResponse(res, 200, data);
     }).catch(err => {
         console.log("[ERROR] [PATH]", req.originalUrl, err, JSON.stringify(req.body));
-        if (err?.code && err?.error) return this.sendResponse(res, err.code, err.error);
+        if (err?.code && err?.error) return this.sendResponse(res, err.code, {...err});
         return this.sendResponse(res, 500, { message: "Internal server error" });
     });
 }

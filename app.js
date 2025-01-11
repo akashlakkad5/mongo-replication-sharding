@@ -8,7 +8,6 @@ require('dotenv').config();
 
 global.Mongo = require('./utils/mgs');
 dbOps = require('./loaders/mongoose');
-
 Promise.all([dbOps.connect(),]).then(async () => {
     global.masterDB = await dbOps.switchDB({ dbName: process.env.MASTER_DB_NAME });
     require('./loaders/express');
